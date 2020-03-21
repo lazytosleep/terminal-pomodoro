@@ -59,7 +59,7 @@ incrementValAndWrite() {
   if [[ $dt = $date ]] ;
   then
     # below will get lines number in file
-    n=`cat /tmp/value.dat |wc -l`
+    n=`cat ${file_to_store_data} |wc -l`
     n=`expr ${n} - 1`
     sed -i ''${n}' d' $file_to_store_data
   fi
