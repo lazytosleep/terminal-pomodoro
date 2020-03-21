@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-########### Customize your changes here ############
+########### Customize your changes here ###########
 file_to_store_data=./value.dat
 
 
