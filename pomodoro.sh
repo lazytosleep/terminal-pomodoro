@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# Run for 1500 secs and then send break "
-# sleep 1500 && notify-send "break"
+########### Customize your changes here ############
+file_to_store_data=./value.dat
+
 
 # set -x
 help() {
@@ -17,12 +18,13 @@ help() {
 
 dt=$(date '+%d/%m/%Y')
 
+
 createOrReadLastLine() {
   
   # if we don't have a file, start at zero
-  if [ ! -f "/tmp/value.dat" ] ; then
+  if [ ! -f $file_to_store_data ] ; then
     notify_end
-    echo "${dt} 1" >> /tmp/value.dat
+    echo "${dt} 1" >> $file_to_store_data
     # adding a new line as it seems sed last line ($) detects last line only if file ends with new line 
     # echo "" >> /tmp/value.dat
   # otherwise read the value from the file
@@ -36,7 +38,7 @@ createOrReadLastLine() {
 
 incrementValAndWrite() {
   
-  str=`sed -n '$p' /tmp/value.dat`
+  str=`sed -n '$p' ${file_to_store_data}`
   echo "data read ${str}"
   IFS=' ' # space is set as delimiter
   read -ra ARR <<< "$str" # str is read into an array as tokens separated by IFS
@@ -53,13 +55,13 @@ incrementValAndWrite() {
   #echo "${value}" >> /tmp/value.dat
   # sed append was not woking if no line is present, so as a work around first add the line and if 
   # date matches, remove the last line
-  sed -i '$ a '${dt}" "${value}'' /tmp/value.dat
+  sed -i '$ a '${dt}" "${value}'' $file_to_store_data
   if [[ $dt = $date ]] ;
   then
     # below will get lines number in file
     n=`cat /tmp/value.dat |wc -l`
     n=`expr ${n} - 1`
-    sed -i ''${n}' d' /tmp/value.dat
+    sed -i ''${n}' d' $file_to_store_data
   fi
     
 }
