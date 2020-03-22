@@ -73,7 +73,7 @@ notify_end() {
 done
   # sleep 5 && 
   # notify-send "break"
-  zenity --warning --width=2000 --height=1000 --text 'Congratulations you have completed one pomodoro'
+  zenity --warning --width=1000 --height=500 --text 'Congratulations you have completed one pomodoro'
 }
 
 case "$1" in
