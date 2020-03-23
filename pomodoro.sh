@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ########### Customize your changes here ###########
-file_to_store_data=./value.dat
+file_to_store_data=/tmp/value.dat
 
 
 # set -x
@@ -67,7 +67,7 @@ incrementValAndWrite() {
 }
 
 notify_end() {
-  seconds=5; date1=$((`date +%s` + $seconds)); 
+  seconds=1500; date1=$((`date +%s` + $seconds)); 
   while [ "$date1" -ge `date +%s` ]; do 
     echo -ne "$(date -u --date @$(($date1 - `date +%s` )) +%M:%S)\r"; 
 done
